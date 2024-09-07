@@ -1,7 +1,5 @@
 """Constants for the package."""
 
-from platformdirs import user_log_dir  # type: ignore
-
 try:
     from importlib import metadata
 except ImportError:  # for Python < 3.8
