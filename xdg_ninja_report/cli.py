@@ -2,7 +2,9 @@
 
 from argparse import ArgumentParser, Namespace, RawTextHelpFormatter
 
-from .consts import __version__ as VERSION
+from rich import print
+
+from xdg_ninja_report.consts import __version__ as VERSION
 
 parser: ArgumentParser
 
@@ -15,7 +17,7 @@ def get_parsed_args() -> Namespace:
         The parsed arguments as an argparse.Namespace object.
     """
     global parser
-    
+
     parser = ArgumentParser(
         description="Check for dotfiles in the $HOME directory that are not reported by xdg-ninja",  # Program description
         formatter_class=RawTextHelpFormatter,  # Disable line wrapping
@@ -69,5 +71,5 @@ def parser_error(err_msg: str) -> None:
     """
     global parser
 
-    print(f"ERROR: {err_msg}\n")
+    print(f"[red]ERROR[/]: {err_msg}\n")
     parser.print_help()
