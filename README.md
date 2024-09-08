@@ -117,11 +117,11 @@ pipx uninstall xdg-ninja-report
 > [!TIP]
 > For more information about the usage of the program, run `xdg_ninja_report --help` or `xdg_ninja_report -h`.
 
-[INSERT IMAGE]
+![options](https://github.com/user-attachments/assets/af5cf138-f450-41fa-8189-f6b328facfb9)
 
 ## Example of execution
 
-[INSERT IMAGE]
+<img width="563" alt="Screenshot 2024-09-08 010616" src="https://github.com/user-attachments/assets/f57b13c5-e479-4f98-b58d-40ffa88c9ec2">
 
 # Contributors
 
