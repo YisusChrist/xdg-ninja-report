@@ -1,0 +1,256 @@
+[1m[36mThe $XDG_DATA_HOME environment variable is not set, make sure to add it to your shell's configuration before setting any of the other environment variables![0m
+[1m[36m    ⤷ The recommended value is: [1m[3m$HOME/.local/share[0m
+[1m[36mThe $XDG_CONFIG_HOME environment variable is not set, make sure to add it to your shell's configuration before setting any of the other environment variables![0m
+[1m[36m    ⤷ The recommended value is: [1m[3m$HOME/.config[0m
+[1m[36mThe $XDG_STATE_HOME environment variable is not set, make sure to add it to your shell's configuration before setting any of the other environment variables![0m
+[1m[36m    ⤷ The recommended value is: [1m[3m$HOME/.local/state[0m
+[1m[36mThe $XDG_CACHE_HOME environment variable is not set, make sure to add it to your shell's configuration before setting any of the other environment variables![0m
+[1m[36m    ⤷ The recommended value is: [1m[3m$HOME/.cache[0m
+
+[1m[3mStarting to check your [36m$HOME[0m.
+
+[[1m[31mandroid-studio[0m]: [1m[3m$HOME/.android[0m
+
+Export the following environment variables:
+
+export ANDROID_HOME="$XDG_DATA_HOME"/android
+
+[[1m[33mbash[0m]: [1m[3m$HOME/.bash_logout[0m
+
+Currently unsupported.
+
+*Relevant issue:* https://savannah.gnu.org/support/?108134
+
+[[1m[33mbash[0m]: [1m[3m$HOME/.bash_profile[0m
+
+Currently unsupported.
+
+*Relevant issue:* https://savannah.gnu.org/support/?108134
+
+[[1m[33mbash[0m]: [1m[3m$HOME/.bashrc[0m
+
+Currently unsupported.
+
+*Relevant issue:* https://savannah.gnu.org/support/?108134
+
+[[1m[31mbash[0m]: [1m[3m$HOME/.bash_history[0m
+
+Export the following environment variables:
+
+export HISTFILE="${XDG_STATE_HOME}"/bash/history
+
+[[1m[33mdm[0m]: [1m[3m$HOME/.dmrc[0m
+
+Currently unsupported. No information found.
+
+[[1m[31mfeh[0m]: [1m[3m$HOME/.fehbg[0m
+
+When setting the background, pass the *--no-fehbg* flag to feh.
+
+[[1m[31mgit[0m]: [1m[3m$HOME/.gitconfig[0m
+
+XDG is supported out-of-the-box, so we can simply move the file to
+*XDG_CONFIG_HOME/git/config*.
+
+[[1m[31mgnupg[0m]: [1m[3m$HOME/.gnupg[0m
+
+Export the following environment variables:
+
+export GNUPGHOME="$XDG_DATA_HOME"/gnupg
+
+[[1m[31mgnu-screen[0m]: [1m[3m$HOME/.screenrc[0m
+
+Export the following environment variables:
+
+export SCREENRC="$XDG_CONFIG_HOME"/screen/screenrc
+
+[[1m[31mgtk-2[0m]: [1m[3m$HOME/.gtkrc-2.0[0m
+
+Export the following environment variables:
+
+export GTK2_RC_FILES="$XDG_CONFIG_HOME"/gtk-2.0/gtkrc
+
+[[1m[31micons[0m]: [1m[3m${HOME}/.icons[0m
+
+Supported
+
+The file ${HOME}/.icons can be moved to ${XDG_DATA_HOME}/icons.
+
+[[1m[31mipython[0m]: [1m[3m$HOME/.ipython[0m
+
+Supported since *8.0.0*.
+
+You can move the file to *XDG_CONFIG_HOME/ipython*.
+
+Or set the following environment variable:
+
+export IPYTHONDIR="${XDG_CONFIG_HOME}/ipython"
+
+[[1m[31mmplayer[0m]: [1m[3m$HOME/.mplayer[0m
+
+Export the following environment variables:
+
+export MPLAYER_HOME="$XDG_CONFIG_HOME"/mplayer
+
+[[1m[33mnss[0m]: [1m[3m$HOME/.pki[0m
+
+**Disclaimer: XDG is supported, but directory may be created again by some
+programs.**
+
+XDG is supported out-of-the-box, so we can simply move directory to
+*"$XDG_DATA_HOME"/pki*.
+
+*Note: some apps (chromium, for example) hardcode path to "$HOME"/.pki, so
+directory may appear again, see*
+https://bugzilla.mozilla.org/show_bug.cgi?id=818686#c11*.*
+
+[[1m[31mnvidia-settings[0m]: [1m[3m$HOME/.nvidia-settings-rc[0m
+
+Alias nvidia-settings to use a custom configuration location:
+
+nvidia-settings --config="$XDG_CONFIG_HOME"/nvidia/settings
+
+[[1m[31mohmyzsh[0m]: [1m[3m$HOME/.oh-my-zsh[0m
+
+See the relevant issue https://github.com/ohmyzsh/ohmyzsh/issues/9543.
+
+Export the following environment variables:
+
+export ZSH="$XDG_DATA_HOME"/oh-my-zsh
+
+[[1m[33mopenjdk[0m]: [1m[3m$HOME/.java[0m
+
+**Disclaimer: some applications don't respect this setting.**
+
+Export the following environment variable:
+
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java
+
+[[1m[31mpython[0m]: [1m[3m$HOME/.python_history[0m
+
+Export the following environment variables:
+
+export PYTHONSTARTUP="${XDG_CONFIG_HOME}/python/pythonrc"
+
+Now create the file *pythonrc*, and put the following code into it:
+
+import os
+import atexit
+import readline
+
+history = os.path.join(os.environ['XDG_CACHE_HOME'], 'python_history')
+try:
+readline.read_history_file(history)
+except OSError:
+pass
+
+def write_history():
+try:
+readline.write_history_file(history)
+except OSError:
+pass
+
+atexit.register(write_history)
+
+*Note: This won't work if python is invoked with -i flag.*
+
+*Credit:* https://unix.stackexchange.com/a/675631/417527
+
+[[1m[31mvim[0m]: [1m[3m$HOME/.vimrc[0m
+
+Since 7.3.1178 vim will search for ~/.vim/vimrc if ~/.vimrc is not found.
+
+"$XDG_CONFIG_HOME"/vim/vimrc
+
+set runtimepath^=$XDG_CONFIG_HOME/vim
+set runtimepath+=$XDG_DATA_HOME/vim
+set runtimepath+=$XDG_CONFIG_HOME/vim/after
+
+set packpath^=$XDG_DATA_HOME/vim,$XDG_CONFIG_HOME/vim
+set packpath+=$XDG_CONFIG_HOME/vim/after,$XDG_DATA_HOME/vim/after
+
+let g:netrw_home = $XDG_DATA_HOME."/vim"
+call mkdir($XDG_DATA_HOME."/vim/spell", 'p')
+
+set backupdir=$XDG_STATE_HOME/vim/backup | call mkdir(&backupdir, 'p')
+set directory=$XDG_STATE_HOME/vim/swap   | call mkdir(&directory, 'p')
+set undodir=$XDG_STATE_HOME/vim/undo     | call mkdir(&undodir,   'p')
+set viewdir=$XDG_STATE_HOME/vim/view     | call mkdir(&viewdir,   'p')
+
+if !has('nvim') | set viminfofile=$XDG_STATE_HOME/vim/viminfo | endif
+
+~/.profile
+
+export GVIMINIT='let $MYGVIMRC="$XDG_CONFIG_HOME/vim/gvimrc" | source
+$MYGVIMRC'
+export VIMINIT='let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc" | source
+$MYVIMRC'
+
+[G]VIMINIT environment variable will also affect Neovim. If separate configs
+for Vim and Neovim are desired then the following will be a better choice:
+
+export GVIMINIT='let $MYGVIMRC = !has("nvim") ?
+"$XDG_CONFIG_HOME/vim/gvimrc" : "$XDG_CONFIG_HOME/nvim/init.gvim" | so
+$MYGVIMRC'
+export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc"
+: "$XDG_CONFIG_HOME/nvim/init.vim" | so $MYVIMRC'
+
+Additional information:
+https://blog.joren.ga/vim-xdg
+https://tlvince.com/vim-respect-xdg
+
+[[1m[31mvim[0m]: [1m[3m$HOME/.viminfo[0m
+
+See help for *.vimrc*
+
+[[1m[31mwget[0m]: [1m[3m$HOME/.wget-hsts[0m
+
+Alias wget to use a custom hsts cache file location:
+
+alias wget=wget --hsts-file="$XDG_DATA_HOME/wget-hsts"
+
+[[1m[33mxinit[0m]: [1m[3m$HOME/.xinitrc[0m
+
+**Disclaimer: this works only with xinit, not with startx.**
+
+Export the following environment variable:
+
+export XINITRC="$XDG_CONFIG_HOME"/X11/xinitrc
+
+[[1m[31mxorg-xauth[0m]: [1m[3m$HOME/.Xauthority[0m
+
+Export the following environment variables:
+
+export XAUTHORITY="$XDG_RUNTIME_DIR"/Xauthority
+
+• **LightDM does not allow you to do this.** See here
+https://askubuntu.com/a/961459 for workaround.
+• SLiM has *~/.Xauthority* hardcoded
+
+*Note: this might not work as expected, so be careful.*
+
+[[1m[31mzsh[0m]: [1m[3m$HOME/.zcompdump[0m
+
+Set this in your zshrc:
+
+compinit -d "$XDG_CACHE_HOME"/zsh/zcompdump-"$ZSH_VERSION"
+
+[[1m[31mzsh[0m]: [1m[3m$HOME/.zsh_history[0m
+
+Export the following environment variable:
+
+export HISTFILE="$XDG_STATE_HOME"/zsh/history
+
+[[1m[31mzsh[0m]: [1m[3m$HOME/.zshrc[0m
+
+Move file to *"$HOME"/.config/zsh/.zshrc* and export the following
+environment variable:
+
+export ZDOTDIR="$HOME"/.config/zsh
+
+You can do this in */etc/zsh/zshenv*.
+
+[1m[3mDone checking your [36m$HOME.[0m
+
+[3mIf you have files in your [36m$HOME[0m[3m that shouldn't be there, but weren't recognised by xdg-ninja, please consider creating a configuration file for it and opening a pull request on github.[0m
+
