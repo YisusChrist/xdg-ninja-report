@@ -135,7 +135,7 @@ I'm far from being an expert and suspect there are many ways to improve – if y
 
 We also need people to test out pull requests. So take a look through [the open issues](https://github.com/YisusChrist/xdg-ninja-report/issues) and help where you can.
 
-See [Contributing](https://github.com/YisusChrist/.github/blob/main/CONTRIBUTING.md) for more details.
+See [Contributing Guidelines](https://github.com/YisusChrist/.github/blob/main/CONTRIBUTING.md) for more details.
 
 # License
 
